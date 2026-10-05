@@ -1,0 +1,173 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* === Светлая тема === */
+    --c-bg: 250 246 241;              /* #FAF6F1 сливочный */
+    --c-surface: 255 255 255;
+    --c-surface-2: 253 247 251;
+    --c-ink: 43 27 46;                /* #2B1B2E */
+    --c-muted: 122 107 124;
+
+    --c-primary: 178 122 142;         /* #B27A8E пудрово-розовый */
+    --c-primary-dark: 142 92 112;
+    --c-primary-soft: 244 214 222;
+
+    --c-accent: 201 169 110;          /* #C9A96E золото */
+    --c-accent-soft: 245 232 202;
+
+    --c-border: 232 223 214;
+    --c-success: 127 182 138;
+    --c-warning: 217 154 61;
+    --c-danger: 217 124 124;
+
+    --c-overlay: 43 27 46;
+    --c-shadow: 43 27 46;
+
+    --c-tip-bg-from: 253 247 236;   /* мягкая амбра */
+    --c-tip-bg-to: 253 244 246;     /* мягкий розовый */
+    --c-tip-border: 245 232 202;
+    --c-tip-ink: 120 90 30;         /* тёплый коричневый для акцента */
+
+    --c-welcome-rose-from: 255 228 230;      /* rose-100 */
+    --c-welcome-rose-via: 253 242 248;       /* pink-50 */
+    --c-welcome-purple-from: 233 213 255;    /* purple-100 */
+    --c-welcome-purple-via: 253 242 248;
+    --c-welcome-amber-from: 254 243 199;     /* amber-100 */
+    --c-welcome-amber-via: 253 242 248;
+    --c-welcome-teal-from: 204 251 241;      /* teal-100 */
+    --c-welcome-teal-via: 253 242 248;
+
+    color-scheme: light;
+  }
+
+  @layer base {
+    *, *::before, *::after {
+      transition-property: background-color, border-color, color;
+      transition-duration: 200ms;
+      transition-timing-function: ease;
+    }
+
+    /* Не транзишенить все свойства — только цвета */
+    img, video, svg, canvas, iframe {
+      transition: none;
+    }
+  }
+
+  .dark {
+    /* === Тёмная тема === */
+    --c-bg: 26 17 30;                 /* #1A111E глубокая слива */
+    --c-surface: 37 26 43;            /* #251A2B */
+    --c-surface-2: 48 33 55;
+    --c-ink: 244 233 236;             /* #F4E9EC */
+    --c-muted: 168 152 165;
+
+    --c-primary: 214 148 173;         /* #D694AD более яркий розовый */
+    --c-primary-dark: 178 122 142;
+    --c-primary-soft: 78 47 62;
+
+    --c-accent: 224 191 138;          /* #E0BF8A тёплое золото */
+    --c-accent-soft: 66 51 33;
+
+    --c-border: 58 42 63;
+    --c-success: 143 197 154;
+    --c-warning: 226 172 84;
+    --c-danger: 224 140 140;
+
+    --c-overlay: 0 0 0;
+    --c-shadow: 0 0 0;
+
+    --c-tip-bg-from: 58 45 28;      /* тёмная амбра */
+    --c-tip-bg-to: 55 35 45;        /* тёмная роза */
+    --c-tip-border: 88 68 40;
+    --c-tip-ink: 224 191 138;       /* золото */
+
+    --c-welcome-rose-from: 58 35 45;
+    --c-welcome-rose-via: 42 28 40;
+    --c-welcome-purple-from: 55 35 65;
+    --c-welcome-purple-via: 42 28 40;
+    --c-welcome-amber-from: 65 50 30;
+    --c-welcome-amber-via: 42 28 40;
+    --c-welcome-teal-from: 35 55 55;
+    --c-welcome-teal-via: 42 28 40;
+
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: rgb(var(--c-bg));
+    color: rgb(var(--c-ink));
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .safe-top { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Декоративные градиенты */
+  .bg-hero-light {
+    background:
+      radial-gradient(ellipse at top left, rgb(var(--c-primary-soft)) 0%, transparent 55%),
+      radial-gradient(ellipse at bottom right, rgb(var(--c-accent-soft)) 0%, transparent 50%),
+      rgb(var(--c-bg));
+  }
+
+  .bg-hero-dark {
+    background:
+      radial-gradient(ellipse at top left, rgb(var(--c-primary) / 0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at bottom right, rgb(var(--c-accent) / 0.08) 0%, transparent 50%),
+      rgb(var(--c-bg));
+  }
+
+  /* Мягкая тень */
+  .shadow-soft {
+    box-shadow: 0 4px 20px rgb(var(--c-shadow) / 0.06);
+  }
+  .shadow-card {
+    box-shadow: 0 2px 12px rgb(var(--c-shadow) / 0.08);
+  }
+  .shadow-elevated {
+    box-shadow: 0 8px 32px rgb(var(--c-shadow) / 0.12);
+  }
+
+  .bg-welcome-rose {
+    background: linear-gradient(to bottom,
+      rgb(var(--c-welcome-rose-from)) 0%,
+      rgb(var(--c-welcome-rose-via)) 45%,
+      rgb(var(--c-bg)) 100%);
+  }
+  .bg-welcome-purple {
+    background: linear-gradient(to bottom,
+      rgb(var(--c-welcome-purple-from)) 0%,
+      rgb(var(--c-welcome-purple-via)) 45%,
+      rgb(var(--c-bg)) 100%);
+  }
+  .bg-welcome-amber {
+    background: linear-gradient(to bottom,
+      rgb(var(--c-welcome-amber-from)) 0%,
+      rgb(var(--c-welcome-amber-via)) 45%,
+      rgb(var(--c-bg)) 100%);
+  }
+  .bg-welcome-teal {
+    background: linear-gradient(to bottom,
+      rgb(var(--c-welcome-teal-from)) 0%,
+      rgb(var(--c-welcome-teal-via)) 45%,
+      rgb(var(--c-bg)) 100%);
+  }
+}
